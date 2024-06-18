@@ -1,3 +1,4 @@
+//import 
 const express = require('express');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
@@ -5,6 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const { default: axios } = require('axios');
 
+//server logic type for Defining the type of the api or the server
 async function startServer() {
     const app = express();
     const server = new ApolloServer({
@@ -17,20 +19,19 @@ async function startServer() {
               phone: String!
               website: String!
           }
-
           type Todo {
               id: ID!
               title: String!
               completed: Boolean
               user: User
           }
-
           type Query {
               getTodos: [Todo]
               getAllUsers: [User]
               getUser(id: ID!): User
           }
         `,
+        //the resolver is used here to give logic for how to fetch the api 
         resolvers: {
             Todo: {
                 user: async (todo) =>
