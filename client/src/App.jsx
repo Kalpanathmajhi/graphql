@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import { gql, useQuery } from '@apollo/client'
 
@@ -16,11 +15,14 @@ query getTodoWithUser {
 }`;
 
 function App() {
-const {data, loading} = useQuery(query)
+const {data, loading,error} = useQuery(query)
    if (loading) return <h1>Loading...</h1>
+   if (error) return <h1>Error: {error.message}</h1>
+   
   return (
     <>
     {JSON.stringify(data)}
+
     </>
   )
 }
